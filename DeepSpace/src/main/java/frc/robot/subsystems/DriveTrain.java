@@ -39,6 +39,8 @@ public class DriveTrain extends Subsystem{
   static final double kD = 0.00;
   static final double kF = 0.00;
   static final double kToleranceDegrees = 2.0f;
+  
+  final double MAX_TURN_SPEED = 0.7;
 
   int counter = 0;
 
@@ -93,7 +95,7 @@ public class DriveTrain extends Subsystem{
   public void arcade(Joystick driver){
 
     double speed = -driver.getRawAxis(RobotMap.leftStickY);
-    double turn = driver.getRawAxis(RobotMap.rightStickX);
+    double turn = driver.getRawAxis(RobotMap.rightStickX) * MAX_TURN_SPEED;
     robotDrive.arcadeDrive(speed, turn, true);
     addInfoToDashboard();
   }
